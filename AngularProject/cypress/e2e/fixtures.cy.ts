@@ -11,12 +11,12 @@ describe('working with fixtures',()=>{
   it ('logs in user using the fixture data'), (()=>{
       cy.visit('/login')
 
-      cy.fixture('login.json').then((data)=>{
+      cy.fixture('login1.json').then((data)=>{
           cy.get('.email').type(data.email)
           cy.get('password').type(data.password)
           cy.get('.login-btn').click().then(el=>{
               cy.location('pathname').should('not.eq', '/login')
-              cy.location('pathname').should('equal', '/view-users')
+              cy.location('pathname').should('equal', '/users')
               cy.get('[data-cy="login"]')
 
           })
@@ -46,7 +46,7 @@ describe('working with fixtues with multiple data', ()=>{
 
               if(data.email == 'compgodwin@gmail.com' && data.password == '123456'){
                   cy.get('.login-btn').click().then(el=>{
-                      cy.location('pathname').should('equal', '/admin/view-users')
+                      cy.location('pathname').should('equal', '/admin')
                       cy.get('[data-cy="logout-link"]').click()
                       cy.visit('/login')
                   })
