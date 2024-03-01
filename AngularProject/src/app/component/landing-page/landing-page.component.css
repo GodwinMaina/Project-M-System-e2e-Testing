@@ -1,0 +1,143 @@
+
+/* Landing page css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #4CAF50;
+}
+
+.title {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20%;
+  flex: 1;
+  padding: 10px 80px;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.title h2 {
+  margin: 5px 0 0;
+  font-size: 18px;
+}
+
+.title h1:hover,
+.title h2:hover {
+  border-bottom: 5px solid #4CAF50;
+}
+
+.sign-reg button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 20px;
+  font-size: large;
+}
+
+.sign-reg button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+.sign-reg button:active{
+  background-color: green;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-width: 100vw;
+}
+
+.side {
+  margin-top: 20px;
+  text-align: center;
+  padding: 60px 10px;
+  height: 100%;
+  width:50% ;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  gap: 30px;
+}
+
+.side h1 {
+  font-size: 36px;
+}
+
+.side h1:hover {
+  border-bottom: 5px solid #4CAF50;
+}
+
+.side p {
+  font-size: 29px;
+  color: #555;
+  font-weight: bold;
+  text-align: start;
+  margin-left: 5.5rem;
+  margin-bottom: 30px;
+}
+.side button{
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 23px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 30%;
+}
+
+.side button:hover{
+  color: white;
+  background-color: #4CAF50;
+}
+.side button:active{
+  background-color: green;
+}
+.hero-image{
+height: 100%;
+width: 50%;
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+/* border:  1px solid blue; */
+
+}
+.hero-image img{
+  background-size: cover;
+  width: 60%;
+  margin-top: 100px;
+  border-radius:20px;
+  height: 70%;
+  border: 1px solid#4CAF50;
+}

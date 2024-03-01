@@ -1,0 +1,31 @@
+
+<app-navbar></app-navbar>
+
+<div>
+    <div class="sign-up-wrapper">
+    <div class="sign-up-container">
+
+        <div class="sign-up-image">
+            <h3>Welcome!</h3>
+            <p>To keep you conected with us please CREATE an account. </p>
+           <div class="bottom-signup">
+               <p>Already have an account?
+                   <br>
+                   LOG IN here.
+               </p>
+               <button type="submit" id="sign-up-btn" (click)="Tologins()">LOGIN</button>
+           </div>
+        </div>
+          <!-- THIS IS TEMPLATE DRIVEN FORM -->
+        <form  [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form">
+            <h2>CREATE ACCOUNT</h2>
+            <input type="text" id="username" placeholder="UserName" name="userName" formControlName="userName" required>
+            <input type="email" id="email" placeholder="Email" name="email" formControlName="email" required>
+            <input type="password" id="password" placeholder="Password" name="password" formControlName="password" required autocomplete="on">
+            <button type="submit" id="login-btn">SIGN UP</button>
+        </form>
+
+    </div>
+
+</div>
+

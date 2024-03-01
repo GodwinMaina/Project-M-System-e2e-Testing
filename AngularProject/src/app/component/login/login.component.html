@@ -1,0 +1,44 @@
+
+
+<!-- login -->
+
+<app-navbar></app-navbar>
+
+<div>
+
+    <div class="login-wrapper">
+    <div class="login-container">
+
+        <div class="login-image">
+            <h3>Welcome Back!</h3>
+            <p>To keep conected with us please login into your account. </p>
+           <div class="bottom">
+               <p>Don't have an account?
+                   <br>
+                   SIGN UP for free below.
+               </p>
+               <button type="submit" (click)="Tosignups()" id="sign-up-btn">SIGN UP</button>
+
+           </div>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+            <h1>Login</h1>
+            <div style="color: green; font-size: 25px;" class=".successMsg">{{displaySuccess}}</div>
+            <input type="text" formControlName="email" id="email" placeholder="Email" name="email" >
+
+
+            <p id="email-error"></p>
+            <input type="password" formControlName="password" id="password" placeholder="Password" name="password"  required autocomplete="on">
+            <div class="reset">
+                <div class="rem-me">
+                </div>
+                <a href="">Forgot password</a>
+            </div>
+            <button class="login-btn" type="submit" id="login-btn">Login</button>
+        </form>
+    </div>
+</div>
+
+</div>
+
+
