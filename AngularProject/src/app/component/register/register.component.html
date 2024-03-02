@@ -19,10 +19,10 @@
           <!-- THIS IS TEMPLATE DRIVEN FORM -->
         <form  [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form">
             <h2>CREATE ACCOUNT</h2>
-            <input type="text" id="username" placeholder="UserName" name="userName" formControlName="userName" required>
-            <input type="email" id="email" placeholder="Email" name="email" formControlName="email" required>
-            <input type="password" id="password" placeholder="Password" name="password" formControlName="password" required autocomplete="on">
-            <button type="submit" id="login-btn">SIGN UP</button>
+            <input class="userName" type="text" id="username" placeholder="UserName" name="userName" formControlName="userName" required>
+            <input class="email" type="email" id="email" placeholder="Email" name="email" formControlName="email" required>
+            <input class="password" type="password" id="password" placeholder="Password" name="password" formControlName="password" required autocomplete="on">
+            <button class="sign-btn" type="submit" id="login-btn">SIGN UP</button>
         </form>
 
     </div>

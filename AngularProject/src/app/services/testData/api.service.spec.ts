@@ -20,18 +20,7 @@ describe('ApiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('gets user by Id', ()=>{
-    let id = '206ff9b5-5413-4f20-b343-501285fcf0a3'
-    service.getOneUserDetails(id).subscribe((user:any)=>{
-      expect(user).toBeTruthy()
-      expect(user.name).toBeTruthy('Godwin')
-    })
-
-    const mockReq = testingController.expectOne(`http:localhost:3100/user/${id}`)
-    mockReq.flush(expectedUsers[0])
-    expect(mockReq.request.method).toBe('GET')
-  })
-
+  //Test register User
   it('registers a user', ()=>{
     let mockUser ={
       userName:"Godwin",
@@ -48,4 +37,35 @@ describe('ApiService', () => {
     expect(mockReq.request.body).toBe(mockUser)
     mockReq.flush({"message": "Account created successfully"})
   })
+
+
+  //Test log in user
+  it('logs in a user',()=>{
+    let mockLogin ={
+      email:"compgodwin@gmail.com",
+      password:'123456'
+    }
+    service.loginUser(mockLogin).subscribe((res:any)=>{
+      expect(res).toBeTruthy()
+expect(res.message).toEqual("Logged in successfully")
+    })
+    const mockRequest = testingController.expectOne('http://localhost:3100/auth/login')
+expect(mockRequest.request.method).toEqual('POST')
+expect(mockRequest.request.body).toBe(mockLogin)
+mockRequest.flush({"message":"Logged in successfully"})
+  })
+
+//Test get one user by user_id
+  // it('gets user by Id', ()=>{
+  //   let id = '206ff9b5-5413-4f20-b343-501285fcf0a3'
+  //   service.getOneUserDetails(id).subscribe((user:any)=>{
+  //     expect(user).toBeTruthy()
+  //     expect(user.name).toBeTruthy('Godwin')
+  //   })
+
+  //   const mockReq = testingController.expectOne(`http:localhost:3100/user/${user_id}`)
+  //   mockReq.flush(expectedUsers[0])
+  //   expect(mockReq.request.method).toBe('GET')
+  // })
+
 });

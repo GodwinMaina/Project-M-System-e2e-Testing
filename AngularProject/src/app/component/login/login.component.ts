@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthServicesService } from '../../services/auth-services.service';
+import { users } from '../../interface/userInterface';
 
 
 @Component({
@@ -37,12 +38,10 @@ export class LoginComponent{
 
     onSubmit() {
       if (this.loginForm.valid) {
+        const details: users= this.loginForm.value;
         console.log('Form submitted successfully');
 
-        this.apiConnect.loginUser(
-          this.loginForm.value.email,
-          this.loginForm.value.password
-        ).subscribe(response=>{
+        this.apiConnect.loginUser(details).subscribe(response=>{
           console.log(response);
           console.log('happy')
        this.displaySuccess = response.message
@@ -61,12 +60,6 @@ export class LoginComponent{
         this.visible2 = true
         this.successMsg = response.message
       }
-
-
-
-
-
-
 
        if(this.loginForm.value.email==='compgodwin@gmail.com'){
         this.router.navigate(['/admin'])

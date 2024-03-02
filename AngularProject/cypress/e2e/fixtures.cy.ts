@@ -1,40 +1,29 @@
-describe('working with fixtures',()=>{
 
-  let data:{email: string, password:string}
+//Register/signUp user and after succes visit loginpage to login
+describe('working with fixture data to signup', ()=>{
 
-  before(()=>{
-      cy.fixture('login').then((info)=>{
-          data = info
-      })
-  })
+  it('signup through login1 data and tries to signup', ()=>{
+    cy.visit('/signup')
+    cy.fixture('signup1.json').then((data)=>{
 
-  it ('logs in user using the fixture data'), (()=>{
-      cy.visit('/login')
-
-      cy.fixture('login1.json').then((data)=>{
+          cy.get('.userName').type(data.userName)
           cy.get('.email').type(data.email)
-          cy.get('password').type(data.password)
-          cy.get('.login-btn').click().then(el=>{
-              cy.location('pathname').should('not.eq', '/login')
-              cy.location('pathname').should('equal', '/admin')
-              cy.get('[data-cy="login"]')
+          cy.get('.password').type(data.password)
+
+          //after signup to login page and login
+          cy.get('.sign-btn').click().then(el=>{
+          cy.visit('/login')
 
           })
 
-      })
-  })
-
+    })
+})
 })
 
-describe('working with fixtues with multiple data', ()=>{
 
-  let data: {email: string, password: string}
 
-  before(()=>{
-      cy.fixture('login').then((info)=>{
-          data = info
-      })
-  })
+//registering with fixed data correct details and wrong details
+describe('working with fixture data to login', ()=>{
 
   it('iterates through login2 data and tries to login', ()=>{
       cy.visit('/login')
@@ -46,23 +35,24 @@ describe('working with fixtues with multiple data', ()=>{
 
               if(data.email == 'compgodwin@gmail.com' && data.password == '123456'){
                   cy.get('.login-btn').click().then(el=>{
-                      cy.location('pathname').should('equal', '/admin')
-                      cy.get('[data-cy="logout-link"]').click()
-                      cy.visit('/login')
-                  })
-              }else if (data.email == "compgodwin@gmail.com" && data.password !=='123456'){
-                  cy.get('.login-btn').click()
+                  cy.location('pathname').should('equal', '/admin')
                   cy.get('[data-cy="logout-link"]').click()
-                      cy.visit('/login')
-                  cy.get('.abz').should('contains', 'Incorrect password')
-                  cy.contains('Incorrect password')
+                  cy.visit('/login')
+                  })
               }
+              else if(data.email == 'compgodwin@gmail.com' && data.password! == '123456'){
+                cy.get('.loginbtn').click()
+                cy.contains('Incorrect password')
+            }
           })
       })
   })
+
 })
 
 
+
+ //intercepting
 describe('Request without hitting backend', ()=>{
   beforeEach(()=>{
       cy.visit( '/login') })
@@ -81,5 +71,8 @@ describe('Request without hitting backend', ()=>{
 1
           cy.get('.sucessMsg').should('contain', 'Logged In Successfully')
       })
-  })
+   })
+
 })
+
+
