@@ -40,12 +40,12 @@ export const userLogin = async (req: Request, res: Response) => {
         // Compare passwords
         const correctPwd = await bcrypt.compare(password,user[0].password)
         if (!correctPwd) {
-            return res.status(401).json({
+            return res.json({
                 error: "Incorrect password"
             });
         }
 
-        const loginCredentials = user.map((response: { [x: string]: any; Password: any; userName: any; })=>{
+        const loginCredentials = user.map((response: { [x: string]: any; Password: any; userName: any; email:any })=>{
             const {Password, ...rest} = response
 
             return rest

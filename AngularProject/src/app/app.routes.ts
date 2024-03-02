@@ -13,8 +13,9 @@ export const routes: Routes = [
     {path:'', component: LandingPageComponent},
     {path:'signup', component: RegisterComponent},
     {path:'login', component: LoginComponent},
-    {path:'users', component: UsersComponent},
-    {path:'admin', component: AdminComponent}
+    {path:'admin', component: AdminComponent},
+    {path:'users', component: UsersComponent}
+
 
 
 

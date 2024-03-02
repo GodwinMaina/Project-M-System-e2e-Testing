@@ -16,7 +16,7 @@ describe('working with fixtures',()=>{
           cy.get('password').type(data.password)
           cy.get('.login-btn').click().then(el=>{
               cy.location('pathname').should('not.eq', '/login')
-              cy.location('pathname').should('equal', '/users')
+              cy.location('pathname').should('equal', '/admin')
               cy.get('[data-cy="login"]')
 
           })
@@ -50,8 +50,11 @@ describe('working with fixtues with multiple data', ()=>{
                       cy.get('[data-cy="logout-link"]').click()
                       cy.visit('/login')
                   })
-              }else if (data.email == "compgodwin@.com" && data.password !=='123456'){
+              }else if (data.email == "compgodwin@gmail.com" && data.password !=='123456'){
                   cy.get('.login-btn').click()
+                  cy.get('[data-cy="logout-link"]').click()
+                      cy.visit('/login')
+                  cy.get('.abz').should('contains', 'Incorrect password')
                   cy.contains('Incorrect password')
               }
           })
@@ -59,13 +62,13 @@ describe('working with fixtues with multiple data', ()=>{
   })
 })
 
+
 describe('Request without hitting backend', ()=>{
   beforeEach(()=>{
-      cy.visit('/login')
-  })
+      cy.visit( '/login') })
 
   it('should handle login port request', ()=>{
-      cy.intercept('POST', 'http://localhost:3100:auth/login', {
+      cy.intercept('POST', 'http://localhost:3100/auth/login', {
           body:{
               message: "Logged in successfully"
           }
@@ -75,7 +78,7 @@ describe('Request without hitting backend', ()=>{
 
       cy.wait('@loginRequest').then(interception =>{
           expect( interception.request.body).to.exist;
-
+1
           cy.get('.sucessMsg').should('contain', 'Logged In Successfully')
       })
   })

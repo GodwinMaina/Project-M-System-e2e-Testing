@@ -2,7 +2,8 @@
 import { Injectable } from '@angular/core';
 
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { users } from '../interface/userInterface';
 
 
 @Injectable({
@@ -12,14 +13,27 @@ export class AuthServicesService {
 
   constructor(private http: HttpClient) { }
 
-  signUpUser(UserName: string, email: string, password: string){
-    const userData= { userName: UserName, email: email, password: password };
-    return this.http.post<{ message: string, error: string }>('http://localhost:3100/signup', userData)
-  }
+  signUpUser(userData:users){
+    return this.http.post<{ message: string, error: string }>('http://localhost:3100/signup', userData,
+      {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'
+      })
+  })
+}
 
   loginUser(email: string, password: string){
     const userLogs ={email:email, password:password};
-    return this.http.post<{ message: string, error: string }>('http://localhost:3100/auth/login', userLogs);
+    return this.http.post<{ message: string, error: string,}>('http://localhost:3100/auth/login', userLogs);
   };
+
+
+  getOneUserDetails(id:string){
+    return this.http.get<{user:users[]}>(`http://localhost:3100/users/${id}`, {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+      })
+    })
+  }
 
 }

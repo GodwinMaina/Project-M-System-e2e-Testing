@@ -24,17 +24,21 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
             <h1>Login</h1>
             <div style="color: green; font-size: 25px;" class=".successMsg">{{displaySuccess}}</div>
-            <input type="text" formControlName="email" id="email" placeholder="Email" name="email" >
+            <input class="email" type="text" formControlName="email" id="email" placeholder="Email" name="email" >
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">Invalid Email Format</div>
 
 
             <p id="email-error"></p>
-            <input type="password" formControlName="password" id="password" placeholder="Password" name="password"  required autocomplete="on">
+            <input class="password" type="password" formControlName="password" id="password" placeholder="Password" name="password"  required autocomplete="on">
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">This is Required</div>
+            <div class="abz" *ngIf="visible">{{errorMsg}}</div>
             <div class="reset">
                 <div class="rem-me">
                 </div>
                 <a href="">Forgot password</a>
             </div>
-            <button class="login-btn" type="submit" id="login-btn">Login</button>
+            <button  class="login-btn" type="submit" id="login-btn">Login</button>
+
         </form>
     </div>
 </div>

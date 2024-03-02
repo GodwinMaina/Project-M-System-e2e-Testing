@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, FormsModule,Validators,ReactiveFormsModule } fr
 import { AuthServicesService } from '../../services/auth-services.service';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { users } from '../../interface/userInterface';
 // interface registerDetails{
 //   userName:string;
 //   email: string;
@@ -42,11 +43,9 @@ export class RegisterComponent {
   onSubmit() {
 
       if (this.signUpForm.valid) {
-        this.apiConnect.signUpUser(
-          this.signUpForm.value.userName,
-          this.signUpForm.value.email,
-          this.signUpForm.value.password
-        ).subscribe(response => {
+
+        const details: users= this.signUpForm.value;
+        this.apiConnect.signUpUser(details).subscribe(response => {
           console.log(response);
 
 

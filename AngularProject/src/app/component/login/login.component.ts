@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthServicesService } from '../../services/auth-services.service';
@@ -17,7 +17,15 @@ import { AuthServicesService } from '../../services/auth-services.service';
 export class LoginComponent{
 
   loginForm!: FormGroup
-displaySuccess=''
+  displaySuccess=''
+
+
+  errorMsg!:string
+  successMsg!:string
+
+  visible = false
+  visible2 = false
+
     constructor(private fb:FormBuilder, public apiConnect:AuthServicesService, private router:Router){
 
       this.loginForm = this.fb.group({
@@ -38,13 +46,45 @@ displaySuccess=''
           console.log(response);
           console.log('happy')
        this.displaySuccess = response.message
+       this.errorMsg='Incorrect password'
+       let error=response.error
+       console.log(error)
+
+       if(response.error){
+        this.visible = true
+        this.errorMsg = response.error
+
+        setTimeout(() => {
+          this.visible = false
+        }, 3000);
+      }else if(response.message){
+        this.visible2 = true
+        this.successMsg = response.message
+      }
+
+
+
+
+
+
+
+       if(this.loginForm.value.email==='compgodwin@gmail.com'){
+        this.router.navigate(['/admin'])
+        }
+        else{
+          this.router.navigate(['/users'])
+        }
+
+        if (this.errorMsg) {
+          this.errorMsg = response.error;
+        }
+
 
       })
 
       setTimeout(() => {
         this.loginForm.reset();
         this.displaySuccess = ''
-
     }, 2000);
 
 
